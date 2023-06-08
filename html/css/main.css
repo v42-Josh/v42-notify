@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: end;
+    overflow: hidden;
+}
+
+.toasts-wrap {
+    margin-top: 70px;
+    max-width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.toast {
+    margin-top: 10px;
+    width: fit-content;
+    max-width: 100%;
+    margin-right: 30px;
+    border-radius: 12px;
+    background-color: #252243 !important;
+    color: white !important;
+    padding: 25;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+    animation: backInRight;
+    animation-duration: 0.5s;
+}
+
+.toast.inactive {
+    animation: backOutRight;
+    animation-duration: 0.5s;
+}
+
+.toast.active {
+    transform: translateX(0%);
+}
+
+.toast .toast-content {
+    display: flex;
+    align-items: center;
+}
+
+.toast-content .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem;
+    width: 16px;
+    font-size: 1.4rem;
+    color: #ffffff;
+    height: 16px;
+    border-radius: 50px;
+}
+
+.toast-content .message {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px 0px 29px;
+}
+
+.message .text {
+    font-size: 20px;
+    font-weight: 400;
+    color: #e7e7e7;
+}
+
+.message .text-1 {
+    font-weight: 600;
+    padding-bottom: 4px;
+}
+
+.toast .progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background: #424242f0;
+}
+
+.toast .progress:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.progress.active:before {
+    animation: progress 5s linear forwards;
+}
+
+@keyframes progress {
+    100% {
+        right: 100%;
+    }
+}
+
+/* Notification types list */
+
+.progsuccess:before {
+    background-color: #00DD6B;
+}
+
+.progerror:before {
+    background-color: #FF0045;
+}
+
+.progwarning:before {
+    background-color: #fc9f27;
+}
+
+.proginfo:before {
+    background-color: #2980b9;
+}
+
+.proghealthstatus:before {
+    background-color: #EF5350;
+}
+
+.progpolice::before {
+    background-color: #135DD8;
+}
+
+.progambulance:before {
+    background-color: #FFC905;
+}
