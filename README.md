@@ -18,3 +18,6 @@ end
 ```
 ensure v42-notify
 ```
+
+### Support Discord
+Make sure to join our discord (https://discord.com/invite/ackuWrBVV3)
