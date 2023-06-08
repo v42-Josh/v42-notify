@@ -1,8 +1,7 @@
 # v42-notify
 
 Preview:
-
-![notify](https://github.com/v42-Josh/v42-notify/assets/135979159/9ae5ef53-a778-40f9-a12b-d33eb2b4e578)
+![notify](https://github.com/v42-Josh/v42-notify/assets/135979159/7c644b78-ce29-4a38-b9aa-de8371a498a7)
 
 ### Manual
 
