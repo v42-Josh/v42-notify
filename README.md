@@ -2,7 +2,7 @@
 
 Preview:
 
-![notify](https://github.com/v42-Josh/v42-notify/assets/135979159/9ae5ef53-a778-40f9-a12b-d33eb2b4e578)
+![notify](https://github.com/v42-Josh/v42-notify/assets/135979159/289ebfd3-26cc-42dd-a041-c965e74acc5b)
 
 ### Manual
 
