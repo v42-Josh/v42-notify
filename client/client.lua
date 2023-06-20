@@ -15,7 +15,6 @@ function notify(text, texttype, time)
     else
         texttype = texttype or 'primary'
         time = time or 5000
-        print(Config.PlaySound)
         SendNUIMessage({
             action = 'notify',
             type = texttype,
