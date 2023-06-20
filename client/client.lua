@@ -9,7 +9,8 @@ function notify(text, texttype, time)
             type = texttype,
             time = time,
             text = ttext,
-            caption = caption
+            caption = caption,
+            playSound = Config.PlaySound
         })
     else
         texttype = texttype or 'primary'
@@ -18,7 +19,8 @@ function notify(text, texttype, time)
             action = 'notify',
             type = texttype,
             time = time,
-            text = text
+            text = text,
+            playSound = Config.PlaySound
         })
     end
 end

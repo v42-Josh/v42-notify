@@ -7,4 +7,6 @@ client_script { 'client/client.lua' }
 
 ui_page { 'html/ui.html' }
 
-files { 'html/ui.html', 'html/css/main.css', 'html/js/app.js' }
+shared_script { 'config.lua' }
+
+files { 'html/ui.html', 'html/assets/css/main.css', 'html/assets/js/app.js', 'html/*.*' }
