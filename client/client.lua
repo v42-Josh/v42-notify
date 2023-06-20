@@ -9,16 +9,19 @@ function notify(text, texttype, time)
             type = texttype,
             time = time,
             text = ttext,
-            caption = caption
+            caption = caption,
+            playSound = Config.PlaySound
         })
     else
         texttype = texttype or 'primary'
         time = time or 5000
+        print(Config.PlaySound)
         SendNUIMessage({
             action = 'notify',
             type = texttype,
             time = time,
-            text = text
+            text = text,
+            playSound = Config.PlaySound
         })
     end
 end
