@@ -34,9 +34,11 @@ function QBCore.Functions.Notify(text, texttype, length)
             text = text
         })
     end
-end```
+end
+```
 
 Replace the above code with the following:
+
 ```
 function QBCore.Functions.Notify(text, texttype, length)
     exports['v42-notify']:notify(text, texttype, length);
