@@ -2,7 +2,7 @@ function notify(text, texttype, time)
     if type(text) == "table" then
         local ttext = text.text or 'Placeholder'
         local caption = text.caption or 'Placeholder'
-        texttype = texttype or 'primary'
+        texttype = texttype or Config.DeaultNotify
         time = time or 5000
         SendNUIMessage({
             action = 'notify',
@@ -12,7 +12,7 @@ function notify(text, texttype, time)
             caption = caption,
         })
     else
-        texttype = texttype or 'primary'
+        texttype = texttype or Config.DeaultNotify
         time = time or 5000
         SendNUIMessage({
             action = 'notify',

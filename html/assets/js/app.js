@@ -11,16 +11,6 @@ const removeToast = (toast) => {
 }
 
 const createToast = (id, details) => {
-    let title;
-    if (!allNotifys[id]) {
-        id = 'info';
-    }
-
-    if (details.caption) {
-        title = details.caption
-    } else {
-        title = id;
-    }
     var sound = new Audio(allNotifys[id]['sound']);
     sound.volume = allNotifys[id]['volume'];
 
@@ -30,7 +20,19 @@ const createToast = (id, details) => {
         }
     }
 
-    const { icon, color } = allNotifys[id];
+    const { icon, color, defaultTile } = allNotifys[id];
+
+    let title;
+    if (!allNotifys[id]) {
+        id = 'info';
+    }
+
+    if (details.caption) {
+        title = details.caption;
+    } else {
+        title = defaultTile;
+    }
+
     const toast = document.createElement("li");
     var toastId = (Math.random() + 1).toString(36).substring(4);
     toast.className = `toast ${id}`;
