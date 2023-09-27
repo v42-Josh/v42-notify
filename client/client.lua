@@ -10,7 +10,6 @@ function notify(text, texttype, time)
             time = time,
             text = ttext,
             caption = caption,
-            playSound = Config.PlaySound
         })
     else
         texttype = texttype or 'primary'
@@ -20,9 +19,30 @@ function notify(text, texttype, time)
             type = texttype,
             time = time,
             text = text,
-            playSound = Config.PlaySound
         })
     end
 end
+
+if Config.Debug then
+    RegisterCommand('notify', function(source, args, raw)
+        local notify = args[1];
+        if notify ~= nil then
+            SendNUIMessage({
+                action = 'testNotify',
+                type = notify,
+                time = 5000,
+                text = 'This is an test notification for: ' .. notify,
+            })
+        end
+    end, false)
+end
+
+RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
+    SendNUIMessage({
+        action = 'setNotifications',
+        details = Config.Notifications
+    })
+end)
+
 
 exports('notify', notify)
