@@ -45,9 +45,8 @@ function QBCore.Functions.Notify(text, texttype, length)
 end
 ```
 
-```
-Restart your server to enjoy your new notifications <3!
-```
+
+**Restart your server to enjoy your new notifications <3!**
 
 Create custom Notifications in the config.lua
 ```
