@@ -82,6 +82,8 @@ function ESX.ShowNotification(message, notifyType, length)
 end
 ```
 
+**Enable EsxNotifcation option in the config.lua**
+
 **Press F8 and type the following:**
 ```
 ensure v42-notify
