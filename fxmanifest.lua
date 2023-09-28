@@ -1,6 +1,7 @@
 fx_version 'cerulean'
 game 'gta5'
 author 'v42'
+version '1.3'
 description 'Custom notification system'
 
 client_script { 'client/client.lua' }
