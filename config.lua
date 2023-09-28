@@ -2,9 +2,9 @@ Config = {}
 
 Config.DeaultNotify = 'primary'; -- Default notification (if there is no notify type given)
 Config.Debug = false             -- Set to true is you want to enable /notify command. Usage: '/notify error';
+Config.EsxNotifcation = false     --Set this to true to use ESX notifications
 
-
-Config.Notifications = { -- Restart your server for new notifications!
+Config.Notifications = {         -- Restart your server for new notifications!
     ['error'] = {
         icon = 'fas fa-exclamation-triangle',
         title = 'Error',
@@ -53,7 +53,7 @@ Config.Notifications = { -- Restart your server for new notifications!
         volume = "0.3",
         mute = false,
     },
-    ['info'] = {
+    ['info'] = { -- Default notfication of ESX (You can edit this notify)
         icon = 'fa-solid fa-circle-info',
         title = 'Info',
         sound = "sound.mp3",

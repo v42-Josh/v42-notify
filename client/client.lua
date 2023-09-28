@@ -1,4 +1,14 @@
 function notify(text, texttype, time)
+    if Config.EsxNotifcation then
+        if texttype == true then
+            texttype = 'success';
+        else
+            if texttype == false then
+                texttype = 'error';
+            end
+        end
+    end
+
     if type(text) == "table" then
         local ttext = text.text or 'Placeholder'
         local caption = text.caption or 'Placeholder'
