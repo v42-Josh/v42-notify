@@ -45,6 +45,14 @@ function QBCore.Functions.Notify(text, texttype, length)
 end
 ```
 
+**Press F8 and type the following:**
+```
+ensure v42-notify
+```
+
+QBCore usage:
+QBCore.Functions.Notify("messagge here", 'success', 5000)
+
 ### ESX Manual
 
 - Change the following line in es_extended/client/functions.lua default line 73: 
@@ -76,6 +84,9 @@ end
 ```
 ensure v42-notify
 ```
+
+ESX Usage:
+ESX.ShowNotification("message here", "success", 5000);
 
 Create custom Notifications in the config.lua
 ```
