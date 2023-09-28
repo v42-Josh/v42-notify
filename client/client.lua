@@ -40,12 +40,4 @@ if Config.Debug then
     end, false)
 end
 
--- RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
---     SendNUIMessage({
---         action = 'setNotifications',
---         details = Config.Notifications
---     })
--- end)
-
-
 exports('notify', notify)

@@ -1,7 +1,7 @@
 Config = {}
 
 Config.DeaultNotify = 'primary'; -- Default notification (if there is no notify type given)
-Config.Debug = false          -- Set to true is you want to enable /notify command. Usage: '/notify error';
+Config.Debug = false             -- Set to true is you want to enable /notify command. Usage: '/notify error';
 
 
 Config.Notifications = { -- Restart your server for new notifications!
@@ -53,7 +53,7 @@ Config.Notifications = { -- Restart your server for new notifications!
         volume = "0.3",
         mute = false,
     },
-    ['info'] = { 
+    ['info'] = {
         icon = 'fa-solid fa-circle-info',
         title = 'Info',
         sound = "sound.mp3",
