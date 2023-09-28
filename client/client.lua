@@ -9,6 +9,7 @@ function notify(text, texttype, time)
             type = texttype,
             time = time,
             text = ttext,
+            details = Config.Notifications[texttype],
             caption = caption,
         })
     else
@@ -19,6 +20,7 @@ function notify(text, texttype, time)
             type = texttype,
             time = time,
             text = text,
+            details = Config.Notifications[texttype]
         })
     end
 end
@@ -32,17 +34,18 @@ if Config.Debug then
                 type = notify,
                 time = 5000,
                 text = 'This is an test notification for: ' .. notify,
+                details = Config.Notifications[notify]
             })
         end
     end, false)
 end
 
-RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
-    SendNUIMessage({
-        action = 'setNotifications',
-        details = Config.Notifications
-    })
-end)
+-- RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
+--     SendNUIMessage({
+--         action = 'setNotifications',
+--         details = Config.Notifications
+--     })
+-- end)
 
 
 exports('notify', notify)

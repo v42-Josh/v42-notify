@@ -1,7 +1,6 @@
 const notifications = document.querySelector(".notifications");
 
 const alerts = {};
-var allNotifys;
 
 const removeToast = (toast) => {
     toast.classList.add("hide");
@@ -10,27 +9,24 @@ const removeToast = (toast) => {
     setTimeout(() => toast.remove(), 500);
 }
 
-const createToast = (id, details) => {
-    var sound = new Audio(allNotifys[id]['sound']);
-    sound.volume = allNotifys[id]['volume'];
+const createToast = (id, details, notify) => {
+    var sound = new Audio(notify['sound']);
+    sound.volume = notify['volume'];
 
     function playSound() {
-        if (!allNotifys[id]['mute']) {
+        if (!notify['mute']) {
             sound.play()
         }
     }
 
-    const { icon, color, defaultTile } = allNotifys[id];
+    const { icon, color, title } = notify;
 
-    let title;
-    if (!allNotifys[id]) {
-        id = 'info';
-    }
+    let defaultTile;
 
     if (details.caption) {
-        title = details.caption;
+        defaultTile = details.caption;
     } else {
-        title = defaultTile;
+        defaultTile = title;
     }
 
     const toast = document.createElement("li");
@@ -44,7 +40,7 @@ const createToast = (id, details) => {
 
     function createNotify() {
         alerts[toastId] = details.text;
-        toast.innerHTML = `<div class="column"> <i style="background: ${color}" class="fa ${icon} icon" style="background-color: n;"></i> <div class="message"> <div class="count-section" style="display: none"> <span id="count">0</span> </div> <span class="text text-1" style="color: var(--color);">${title[0].toUpperCase() + title.substring(1)}</span> <span class="text" id="text">${details.text}</span> </div> </div>`;
+        toast.innerHTML = `<div class="column"> <i style="background: ${color}" class="fa ${icon} icon" style="background-color: n;"></i> <div class="message"> <div class="count-section" style="display: none"> <span id="count">0</span> </div> <span class="text text-1" style="color: var(--color);">${defaultTile[0].toUpperCase() + defaultTile.substring(1)}</span> <span class="text" id="text">${details.text}</span> </div> </div>`;
         toast.style.setProperty('--color', color);
         toast.style.setProperty('--animation', 'progress ' + (Math.round(details.time / 1000).toFixed(1)) + 's linear forwards');
         toast.style.setProperty('--color-gd', color + 59);
@@ -83,11 +79,11 @@ function testNotification(id, details) {
 window.addEventListener('message', function (event) {
     switch (event.data.action) {
         case 'notify':
-            createToast(event.data.type, event.data)
+            createToast(event.data.type, event.data, event.data.details)
             break;
-        case 'setNotifications':
-            allNotifys = event.data.details;
-            break
+        // case 'setNotifications':
+        //     allNotifys = event.data.details;
+        //     break
         case 'testNotify':
             testNotification(event.data.type, event.data);
             break
