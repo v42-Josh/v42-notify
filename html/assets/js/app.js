@@ -10,7 +10,6 @@ const removeToast = (toast) => {
 }
 
 const createToast = (id, details, notify) => {
-    console.log(JSON.stringify(notify))
     var sound = new Audio(notify['sound']);
     sound.volume = notify['volume'];
 
