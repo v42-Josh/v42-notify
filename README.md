@@ -1,11 +1,13 @@
-# v42-notify
+# v42-notify [QB/ESX]
 
-Preview:
+Support Discord: https://discord.com/invite/ackuWrBVV3
+
+Showcase YouTube: https://www.youtube.com/watch?v=jLbM1542Xi8
 
 ![notify-thumb](https://github.com/v42-Josh/v42-notify/assets/135979159/5b79caa1-19eb-456d-9d2d-bd6869e78ad4)
 
 
-### Manual
+### QBCore Manual
 
 - Change the following line in qb-core/client/functions.lua default line 88: 
 
@@ -45,8 +47,50 @@ function QBCore.Functions.Notify(text, texttype, length)
 end
 ```
 
+**Press F8 and type the following:**
+```
+ensure v42-notify
+```
 
-**Restart your server to enjoy your new notifications <3!**
+QBCore usage:
+QBCore.Functions.Notify("messagge here", 'success', 5000)
+
+### ESX Manual
+
+- Change the following line in es_extended/client/functions.lua default line 73: 
+
+Replace these function:
+```
+function ESX.ShowNotification(message, notifyType, length)
+    if GetResourceState("esx_notify") ~= "missing" then
+        return exports['esx-notify']:Notify(message, notifyType, length);
+    end
+
+    print("[^1ERROR^7] ^5ESX Notify^7 is Missing!")
+end
+```
+
+Replace the above code with the following:
+
+```
+function ESX.ShowNotification(message, notifyType, length)
+    if GetResourceState("v42-notify") ~= "missing" then
+        return exports['v42-notify']:notify(message, notifyType, length);
+    end
+
+    print("[^1ERROR^7] ^5v42-notify^7 is Missing!")
+end
+```
+
+**Enable EsxNotifcation option in the config.lua**
+
+**Press F8 and type the following:**
+```
+ensure v42-notify
+```
+
+ESX Usage:
+ESX.ShowNotification("message here", "success", 5000);
 
 Create custom Notifications in the config.lua
 ```
