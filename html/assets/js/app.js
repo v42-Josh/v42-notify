@@ -15,7 +15,6 @@ const createToast = (id, details, notify) => {
     var sound = new Audio(notify['sound']);
     sound.volume = notify['volume'];
 
-    console.log(globalMute)
     function playSound() {
         if (!globalMute && !notify['mute']) {
             sound.play()
