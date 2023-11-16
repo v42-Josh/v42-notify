@@ -85,7 +85,6 @@ window.addEventListener('message', function (event) {
             createToast(event.data.type, event.data, event.data.details)
             break;
         case 'setGlobalMute':
-            console.log(event.data.globalMute)
             globalMute = (event.data.globalMute === true)
             break;
         case 'testNotify':
