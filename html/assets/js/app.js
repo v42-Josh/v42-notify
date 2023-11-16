@@ -1,5 +1,7 @@
 const notifications = document.querySelector(".notifications");
 
+let globalMute = false
+
 const alerts = {};
 
 const removeToast = (toast) => {
@@ -13,8 +15,9 @@ const createToast = (id, details, notify) => {
     var sound = new Audio(notify['sound']);
     sound.volume = notify['volume'];
 
+    console.log(globalMute)
     function playSound() {
-        if (!notify['mute']) {
+        if (!globalMute && !notify['mute']) {
             sound.play()
         }
     }
@@ -81,8 +84,16 @@ window.addEventListener('message', function (event) {
         case 'notify':
             createToast(event.data.type, event.data, event.data.details)
             break;
+        case 'setGlobalMute':
+            console.log(event.data.globalMute)
+            globalMute = (event.data.globalMute === true)
+            break;
         case 'testNotify':
             testNotification(event.data.type, event.data, event.data.details);
             break
     }
 });
+
+$(() => {
+    $.post('https://v42-notify/nui-ready')
+})

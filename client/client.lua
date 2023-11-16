@@ -53,4 +53,11 @@ if Config.Debug then
     end, false)
 end
 
+RegisterNUICallback('nui-ready', function()
+    SendNUIMessage({
+        action = 'setGlobalMute',
+        globalMute = Config.GlobalMute
+    })
+end)
+
 exports('notify', notify)
