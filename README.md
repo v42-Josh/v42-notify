@@ -1,78 +1,71 @@
-# v42-notify [QB/ESX]
+# 🔔 v42-notify [QB/ESX Notification System]
 
-Support Discord: https://discord.com/invite/ackuWrBVV3
+A professional, easy-to-use, and highly customizable notification resource for FiveM, supporting both QBCore and ESX frameworks.
 
-Showcase YouTube: https://www.youtube.com/watch?v=jLbM1542Xi8
+**💬 Support Discord**: [Join the Community](https://discord.com/invite/ackuWrBVV3)  
+**🎥 Showcase Video**: [Watch on YouTube](https://www.youtube.com/watch?v=jLbM1542Xi8)
 
-![notify-thumb](https://github.com/v42-Josh/v42-notify/assets/135979159/5b79caa1-19eb-456d-9d2d-bd6869e78ad4)
+![v42Thumbnail_notify](https://github.com/user-attachments/assets/46354753-a7c3-4f24-a099-330d711c006e)
+
+---
+
+## 🚀 Installation
+
+### Resource Installation
+1. Download or clone the repository to your `resources` folder.
+
+2. Add the following line to your `server.cfg`:
 
 
-### QBCore Manual
-
-- Change the following line in qb-core/client/functions.lua default line 88: 
-
-Replace this function:
-```
-function QBCore.Functions.Notify(text, texttype, length)
-    if type(text) == "table" then
-        local ttext = text.text or 'Placeholder'
-        local caption = text.caption or 'Placeholder'
-        texttype = texttype or 'primary'
-        length = length or 5000
-        SendNUIMessage({
-            action = 'notify',
-            type = texttype,
-            length = length,
-            text = ttext,
-            caption = caption
-        })
-    else
-        texttype = texttype or 'primary'
-        length = length or 5000
-        SendNUIMessage({
-            action = 'notify',
-            type = texttype,
-            length = length,
-            text = text
-        })
-    end
-end
-```
-
-Replace the above code with the following:
-
-```
-function QBCore.Functions.Notify(text, texttype, length)
-    exports['v42-notify']:notify(text, texttype, length);
-end
-```
-
-**Press F8 and type the following:**
-```
+```bash
 ensure v42-notify
 ```
 
-QBCore usage:
-QBCore.Functions.Notify("messagge here", 'success', 5000)
+---
 
-### ESX Manual
+## ⚙️ Framework Setup
 
-- Change the following line in es_extended/client/functions.lua default line 73: 
+### 🟢 QBCore
 
-Replace these function:
+**Step 1:** Open the file:
+
 ```
-function ESX.ShowNotification(message, notifyType, length)
-    if GetResourceState("esx_notify") ~= "missing" then
-        return exports['esx-notify']:Notify(message, notifyType, length);
-    end
+qb-core/client/functions.lua
+```
 
-    print("[^1ERROR^7] ^5ESX Notify^7 is Missing!")
+Locate the `QBCore.Functions.Notify` function (around line 88) and replace the entire function with:
+
+```lua
+function QBCore.Functions.Notify(text, texttype, length)
+    exports['v42-notify']:notify(text, texttype, length)
 end
 ```
 
-Replace the above code with the following:
+**Step 2:** Restart your server or type in your console (F8):
+
+```bash
+ensure v42-notify
+```
+
+### ✅ **QBCore Usage Example**:
+
+```lua
+QBCore.Functions.Notify("Your message here", "success", 5000)
+```
+
+---
+
+### 🔵 ESX
+
+**Step 1:** Open the file:
 
 ```
+es_extended/client/functions.lua
+```
+
+Locate the `ESX.ShowNotification` function (around line 73) and replace the entire function with:
+
+```lua
 function ESX.ShowNotification(message, notifyType, length)
     if GetResourceState("v42-notify") ~= "missing" then
         return exports['v42-notify']:notify(message, notifyType, length);
@@ -82,23 +75,116 @@ function ESX.ShowNotification(message, notifyType, length)
 end
 ```
 
-**Enable EsxNotifcation option in the config.lua**
+**Step 2:** Enable ESX notification integration in your `config.lua`:
 
-**Press F8 and type the following:**
+```lua
+Config.EsxNotification = true
 ```
+
+**Step 3:** Restart your server or type in your console (F8):
+
+```bash
 ensure v42-notify
 ```
 
-ESX Usage:
-ESX.ShowNotification("message here", "success", 5000);
+### ✅ **ESX Usage Example**:
 
-Create custom Notifications in the config.lua
+```lua
+ESX.ShowNotification("Your message here", "success", 5000)
 ```
+
+---
+
+## 🎨 Custom Notifications
+
+You can easily create custom notifications by editing the `config.lua`:
+
+Example:
+```lua
 ['error'] = {
-    icon = 'fas fa-exclamation-triangle', -Custom icon (fontawesome)
-    sound = "sound.mp3", - Custom .mp3 sound
-    color = '#FF0045', - Custom notify color
-    volume = "0.3", - Sound volume
-    mute = false, - Sound muted set to true
+    icon   = 'fas fa-exclamation-triangle', -- Custom icon (FontAwesome)
+    sound  = "sound.mp3",                   -- Custom sound file (.mp3)
+    color  = '#FF0045',                     -- Notification background color
+    volume = "0.3",                         -- Sound volume (0.0 to 1.0)
+    mute   = false,                         -- Set to true if you want to mute the sound
 },
 ```
+
+You can create as many notification types as needed (e.g., success, warning, info, admin, bank, etc.).
+
+---
+
+## 🧪 Testing Notifications (In-Game)
+
+To test notifications quickly, enable debug mode in your `config.lua`:
+
+```lua
+Config.Debug = true
+```
+
+Then use the following in-game command to test:
+
+```bash
+/notify success
+```
+
+---
+
+## 📌 Supported Positions
+
+You can set notification positions in your `config.lua`:
+
+```lua
+Config.Position = "top-right"
+```
+
+Available positions:
+- top-left
+- top-right
+- bottom-left
+- bottom-right
+- top-center
+- bottom-center
+- left
+- right
+
+---
+
+## 📂 File Structure
+
+```
+v42-notify/
+├── client/
+│   └── client.lua
+├── html/
+│   ├── assets/
+│   │   ├── css/
+│   │   │   └── main.css
+│   │   ├── js/
+│   │   │   └── app.js
+│   │   └── sound.mp3
+│   └── ui.html
+├── config.lua
+├── fxmanifest.lua
+├── LICENSE
+└── README.md
+```
+
+---
+
+## 👨‍💻 Developer Notes
+
+- 🔊 Custom sounds must be `.mp3` and placed in `/html/assets/`.
+- 🎨 Icons available via [FontAwesome](https://fontawesome.com/).
+- 🔁 Customize styles, fonts, and animations in `style.css`.
+
+---
+
+## 💬 Support
+
+Join our [Discord Community](https://discord.com/invite/ackuWrBVV3) for support or to showcase your setup.
+
+Enjoy a professional and easy-to-use notification system with v42-notify 🚀
+
+Made with ❤️ by [v42-Josh](https://github.com/v42-Josh).
+
