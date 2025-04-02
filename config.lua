@@ -1,7 +1,7 @@
 Config = {}
 
 Config.DeaultNotify = 'primary'; -- Default notification (if there is no notify type given)
-Config.Debug = true              -- Set to true is you want to enable /notify command. Usage: '/notify error';
+Config.Debug = false              -- Set to true is you want to enable /notify command. Usage: '/notify error';
 Config.EsxNotifcation = false    --Set this to true to use ESX notifications
 
 Config.GlobalMute = false        -- If set to true, this mutes all notifications regardless of notification settings
