@@ -1,11 +1,13 @@
-/* Import Google font - Poppins */
+/* Google Font */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+
 :root {
   --dark: #34495e;
   --light: #ffffff;
@@ -14,155 +16,218 @@
   --warning: #e9bd0c;
   --info: #3498db;
 }
+
 body {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: black;
   min-height: 100vh;
 }
+
+/* Notifications Container */
 .notifications {
   position: fixed;
   top: 70px;
   right: 20px;
-  max-width: 30%;
   display: flex;
   flex-direction: column;
-  align-items: end;
+  max-width: 30%;
+  align-items: flex-end;
+  z-index: 9999;
 }
-.notifications :where(.toast, .column) {
-  display: flex;
+
+/* Position Variants */
+.notifications.top-left {
+  left: 20px;
+  right: unset;
+  align-items: flex-start;
+}
+
+.notifications.bottom-left {
+  bottom: 70px;
+  left: 20px;
+  top: unset;
+  align-items: flex-start;
+}
+
+.notifications.bottom-right {
+  bottom: 70px;
+  top: unset;
+  align-items: flex-end;
+}
+
+.notifications.left {
+  left: 20px;
+  top: unset;
+  align-items: flex-start;
+}
+
+.notifications.right {
+  top: unset;
+  align-items: flex-end;
+}
+
+.notifications.top-center {
+  left: 50%;
+  transform: translateX(-50%);
+  right: unset;
   align-items: center;
 }
 
-.alert-count {
-  position: absolute;
-  left: -10px;
-  top: -10px;
-  background: blue;
-  height: 30px;
-  width: 30px;
-  display: flex;
+.notifications.bottom-center {
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: unset;
   align-items: center;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: bold;
-  justify-content: center;
 }
 
-.count-section {
-  position: absolute;
-  right: 7px;
-  top: 7px;
-  padding: 4px 7px;
-  background: red;
-  height: 18px;
-  line-height: 12px;
+/* Toast Layout */
+.toast {
+  position: relative;
+  max-width: 600px;
+  width: fit-content;
+  list-style: none;
+  margin-bottom: 10px;
+  overflow: hidden;
   border-radius: 4px;
-  font-weight: 500;
+  padding: 12px 0;
+  color: #e7e7e7;
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(to right, var(--color-gd, 59)-8%, #252243 40%, #252243 85%);
 }
 
-.icon {
+/* Animations */
+.toast.animate-right {
+  animation: show_toast_right 0.3s ease forwards;
+}
+.toast.animate-right.hide {
+  animation: hide_toast_right 0.3s ease forwards;
+}
+
+.toast.animate-left {
+  animation: show_toast_left 0.3s ease forwards;
+}
+.toast.animate-left.hide {
+  animation: hide_toast_left 0.3s ease forwards;
+}
+
+.toast.animate-top {
+  animation: show_toast_top 0.4s ease forwards;
+}
+.toast.animate-top.hide {
+  animation: hide_toast_top 0.4s ease forwards;
+}
+
+.toast.animate-bottom {
+  animation: show_toast_bottom 0.4s ease forwards;
+}
+.toast.animate-bottom.hide {
+  animation: hide_toast_bottom 0.4s ease forwards;
+}
+
+/* Toast Progress Bar */
+.toast::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background-color: var(--color);
+  animation: var(--animation);
+}
+
+/* Toast Content */
+.toast .column {
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+}
+
+.toast .icon {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0.7rem;
   font-size: 1.4rem;
-  color: #ffffff;
+  color: #fff;
   border-radius: 50px;
 }
 
-.message {
+.toast .message {
   display: flex;
   flex-direction: column;
+  margin: 0 20px;
   font-size: 0.9rem;
-  margin: 0 20px 0px 20px;
 }
 
-.message .text-1 {
+.toast .message .text-1 {
   font-weight: 600;
   padding-bottom: 4px;
 }
 
-.column {
-  padding-left: 1rem;
-}
-
-.notifications .toast {
-  max-width: 600px;
-  width: fit-content;
-  position: relative;
-  overflow: hidden;
-  list-style: none;
-  border-radius: 4px;
-  padding: 12px 0px;
-  color: #e7e7e7;
-  margin-bottom: 10px;
-  justify-content: space-between;
-  animation: show_toast 0.3s ease forwards;
-  background: linear-gradient(
-    to right,
-    var(--color-gd, 59)-8%,
-    #252243 40%,
-    #252243 85%,
-    #252243 85%
-  );
-}
-@keyframes show_toast {
-  0% {
-    transform: translateX(100%);
-  }
-  40% {
-    transform: translateX(-5%);
-  }
-  80% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-10px);
-  }
-}
-.notifications .toast.hide {
-  animation: hide_toast 0.3s ease forwards;
-}
-@keyframes hide_toast {
-  0% {
-    transform: translateX(-10px);
-  }
-  40% {
-    transform: translateX(0%);
-  }
-  80% {
-    transform: translateX(-5%);
-  }
-  100% {
-    transform: translateX(calc(100% + 20px));
-  }
-}
-
-.toast::before {
+.count-section {
   position: absolute;
-  content: "";
-  height: 3px;
-  width: 100%;
-  bottom: 0px;
-  left: 0px;
-  animation: var(--animation);
-  background-color: var(--color);
+  top: 7px;
+  right: 7px;
+  padding: 4px 7px;
+  height: 18px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  line-height: 12px;
+  background: red;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Animation Keyframes */
+@keyframes show_toast_right {
+  0% { transform: translateX(100%); }
+  40% { transform: translateX(-5%); }
+  80% { transform: translateX(0); }
+  100% { transform: translateX(-10px); }
+}
+@keyframes hide_toast_right {
+  0% { transform: translateX(-10px); }
+  40% { transform: translateX(0); }
+  80% { transform: translateX(-5%); }
+  100% { transform: translateX(calc(100% + 20px)); }
+}
+
+@keyframes show_toast_left {
+  0% { transform: translateX(-100%); }
+  40% { transform: translateX(5%); }
+  80% { transform: translateX(0); }
+  100% { transform: translateX(10px); }
+}
+@keyframes hide_toast_left {
+  0% { transform: translateX(10px); }
+  40% { transform: translateX(0); }
+  80% { transform: translateX(5%); }
+  100% { transform: translateX(calc(-100% - 20px)); }
+}
+
+@keyframes show_toast_top {
+  0% { transform: translateY(-100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes hide_toast_top {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100%); opacity: 0; }
+}
+
+@keyframes show_toast_bottom {
+  0% { transform: translateY(100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes hide_toast_bottom {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(100%); opacity: 0; }
 }
 
 @keyframes progress {
-  100% {
-    width: 0%;
-  }
-}
-
-@media screen and (max-width: 530px) {
-  .notifications {
-    width: 95%;
-  }
-  .notifications .toast {
-    width: 100%;
-    font-size: 1rem;
-    margin-left: 20px;
-  }
+  100% { width: 0%; }
 }
