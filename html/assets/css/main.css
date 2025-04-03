@@ -21,7 +21,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: black;
   min-height: 100vh;
 }
 
